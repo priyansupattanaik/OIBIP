@@ -1,0 +1,5 @@
+PyQt5
+emoji
+plyer
+cryptography
+Pillow
