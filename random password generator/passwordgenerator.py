@@ -4,7 +4,15 @@ import tkinter as tk
 from tkinter import messagebox
 import pyperclip
 
-def generate_password(length, include_uppercase, include_numbers, include_symbols, exclude_chars=""):
+def generate_password():
+    try:
+        length = int(length_entry.get())
+        password = generate(length, uppercase_var.get(), numbers_var.get(), symbols_var.get(), exclude_entry.get())
+        result_label.config(text=password)
+    except ValueError as e:
+        messagebox.showerror("Invalid Input", str(e))
+
+def generate(length, include_uppercase, include_numbers, include_symbols, exclude_chars=""):
     character_set = string.ascii_lowercase
     if include_uppercase:
         character_set += string.ascii_uppercase
@@ -28,23 +36,12 @@ def generate_password(length, include_uppercase, include_numbers, include_symbol
 
     return password
 
-def generate():
-    try:
-        length = int(length_entry.get())
-        password = generate_password(
-            length,
-            uppercase_var.get(),
-            numbers_var.get(),
-            symbols_var.get(),
-            exclude_entry.get()
-        )
-        result_label.config(text=password)
-    except ValueError as e:
-        messagebox.showerror("Invalid Input", str(e))
-
 def copy_to_clipboard():
     pyperclip.copy(result_label.cget("text"))
     messagebox.showinfo("Copied", "Password copied to clipboard!")
+
+def on_enter(event):
+    generate_password()
 
 app = tk.Tk()
 app.title("Password Generator")
@@ -57,6 +54,7 @@ frame.pack(expand=True)
 tk.Label(frame, text="Password Length:").grid(row=0, column=0, sticky="w")
 length_entry = tk.Entry(frame, width=10)
 length_entry.grid(row=0, column=1, pady=5)
+length_entry.bind("<Return>", on_enter)
 
 uppercase_var = tk.BooleanVar()
 tk.Checkbutton(frame, text="Include Uppercase", variable=uppercase_var).grid(row=1, column=0, columnspan=2, sticky="w")
@@ -71,7 +69,7 @@ tk.Label(frame, text="Exclude Characters:").grid(row=4, column=0, sticky="w")
 exclude_entry = tk.Entry(frame, width=10)
 exclude_entry.grid(row=4, column=1, pady=5)
 
-tk.Button(frame, text="Generate Password", command=generate).grid(row=5, column=0, columnspan=2, pady=10)
+tk.Button(frame, text="Generate Password", command=generate_password).grid(row=5, column=0, columnspan=2, pady=10)
 
 result_label = tk.Label(frame, text="", wraplength=300, justify="center")
 result_label.grid(row=6, column=0, columnspan=2)

@@ -7,12 +7,12 @@ To run the password generator application on your local machine, follow these st
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/priyansupattanaik/advanced-password-generator.git
+git clone https://github.com/priyansupattanaik/Random-Password-Generator.git
 ```
 
 ### 2. Navigate to the Project Directory
 ```bash
-cd advanced-password-generator
+cd random-password-generator
 ```
 
 ### 3. Install Required Libraries
@@ -23,7 +23,7 @@ pip install pyperclip
 ```
 
 ### 4. Run the Application
-Execute the `password_generator.py` file to launch the password generator application:
+Execute the `passwordgenerator.py` file to launch the password generator application:
 ```bash
-python password_generator.py
+python passwordgenerator.py
 ```
