@@ -7,8 +7,8 @@ This BMI Calculator project is a Python application designed to help users calcu
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/priyansupattanaik/bmi-calculator.git
-    cd bmi-calculator
+    git clone https://github.com/priyansupattanaik/BMI-Calculator.git
+    cd BMI-Calculator
     ```
 
 2. **Install required libraries:**
